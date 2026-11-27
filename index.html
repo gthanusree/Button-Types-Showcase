@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Button Types Showcase</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f6f8;
+    color: #263238;
+    line-height: 1.6;
+}
+
+header {
+    background: #263b35;
+    color: white;
+    text-align: center;
+    padding: 45px 20px;
+}
+
+header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #dce7e1;
+}
+
+.container {
+    max-width: 1050px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+.intro {
+    margin-bottom: 25px;
+    color: #59645e;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border: 1px solid #e2e7e3;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+}
+
+.card h2 {
+    font-size: 19px;
+    margin-bottom: 8px;
+    color: #263b35;
+}
+
+.card p {
+    font-size: 14px;
+    color: #657069;
+    margin-bottom: 16px;
+}
+
+button {
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.primary {
+    background: #385e4a;
+    color: white;
+}
+
+.secondary {
+    background: #e8eee9;
+    color: #385e4a;
+}
+
+.outline {
+    background: white;
+    border: 1px solid #385e4a;
+    color: #385e4a;
+}
+
+.danger {
+    background: #c65353;
+    color: white;
+}
+
+button:disabled {
+    background: #d9ddda;
+    color: #858d87;
+    cursor: not-allowed;
+}
+
+.loading {
+    background: #526e83;
+    color: white;
+}
+
+.toggle {
+    background: #dce5df;
+    color: #385e4a;
+}
+
+.toggle.active {
+    background: #385e4a;
+    color: white;
+}
+
+.demo-result {
+    margin-top: 13px;
+    font-size: 13px;
+    color: #385e4a;
+    min-height: 22px;
+    font-weight: 600;
+}
+
+.counter-value {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #263b35;
+}
+
+.counter-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.workflow {
+    margin-top: 30px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #e2e7e3;
+}
+
+.workflow h2 {
+    margin-bottom: 12px;
+    color: #263b35;
+}
+
+.workflow ol {
+    padding-left: 22px;
+    color: #59645e;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #77817b;
+    font-size: 13px;
+}
+
+@media (max-width: 650px) {
+    .button-grid {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Button Types Showcase</h1>
+    <p>Explore different buttons, their purposes and interactive behaviours.</p>
+</header>
+
+<main class="container">
+
+    <p class="intro">
+        Buttons are important elements in web applications.
+        They allow users to perform actions, navigate interfaces
+        and interact with different features. Explore the examples below.
+    </p>
+
+    <div class="button-grid">
+
+        <section class="card">
+            <h2>1. Primary Button</h2>
+            <p>
+                Purpose: Highlights the main action on a page.
+                Usage: Used for actions such as submitting a form or saving information.
+            </p>
+            <button class="primary" onclick="showMessage('Primary action completed!')">
+                Submit
+            </button>
+            <div class="demo-result" id="primaryResult"></div>
+        </section>
+
+        <section class="card">
+            <h2>2. Secondary Button</h2>
+            <p>
+                Purpose: Provides an alternative action.
+                Usage: Used for actions such as viewing details or opening another section.
+            </p>
+            <button class="secondary" onclick="showMessage('Secondary action selected!')">
+                View Details
+            </button>
+            <div class="demo-result" id="secondaryResult"></div>
+        </section>
+
+        <section class="card">
+            <h2>3. Outline Button</h2>
+            <p>
+                Purpose: Provides a less prominent action.
+                Usage: Commonly used for cancel, back or optional actions.
+            </p>
+            <button class="outline" onclick="showMessage('You selected the outline button.')">
+                Cancel
+            </button>
+            <div class="demo-result" id="outlineResult"></div>
+        </section>
+
+        <section class="card">
+            <h2>4. Danger Button</h2>
+            <p>
+                Purpose: Represents an important or destructive action.
+                Usage: Used for deleting or removing items after confirmation.
+            </p>
+            <button class="danger" onclick="deleteDemo()">
+                Delete Item
+            </button>
+            <div class="demo-result" id="dangerResult"></div>
+        </section>
+
+        <section class="card">
+            <h2>5. Disabled Button</h2>
+            <p>
+                Purpose: Shows an action that is currently unavailable.
+                Usage: Used when required information is missing or an action is restricted.
+            </p>
+            <button disabled>Unavailable</button>
+            <div class="demo-result">This button cannot be clicked.</div>
+        </section>
+
+        <section class="card">
+            <h2>6. Loading Button</h2>
+            <p>
+                Purpose: Indicates that an action is being processed.
+                Usage: Useful during form submission or data loading.
+            </p>
+            <button class="loading" id="loadingBtn" onclick="loadDemo()">
+                Start Process
+            </button>
+            <div class="demo-result" id="loadingResult"></div>
+        </section>
+
+        <section class="card">
+            <h2>7. Toggle Button</h2>
+            <p>
+                Purpose: Switches between two states.
+                Usage: Used for enabling or disabling settings.
+            </p>
+            <button class="toggle" id="toggleBtn" onclick="toggleDemo()">
+                OFF
+            </button>
+            <div class="demo-result" id="toggleResult">Current state: OFF</div>
+        </section>
+
+        <section class="card">
+            <h2>8. Counter Button</h2>
+            <p>
+                Purpose: Performs an action that updates a value.
+                Usage: Used for quantity selection, likes or counters.
+            </p>
+            <div class="counter-value" id="count">0</div>
+            <div class="counter-buttons">
+                <button class="primary" onclick="changeCount(1)">Increase</button>
+                <button class="secondary" onclick="changeCount(-1)">Decrease</button>
+                <button class="outline" onclick="resetCount()">Reset</button>
+            </div>
+        </section>
+
+    </div>
+
+    <section class="workflow">
+        <h2>How Button Workflows Operate</h2>
+        <ol>
+            <li>The user identifies the action they want to perform.</li>
+            <li>The user clicks the appropriate button.</li>
+            <li>The button triggers an event or function.</li>
+            <li>The webpage processes the action.</li>
+            <li>The interface displays the result or updated state.</li>
+        </ol>
+    </section>
+
+</main>
+
+<footer>
+    Button Types Showcase | Built using HTML, CSS and JavaScript
+</footer>
+
+<script>
+function showMessage(message) {
+    const result = event.currentTarget
+        .closest(".card")
+        .querySelector(".demo-result");
+    result.textContent = message;
+}
+
+function deleteDemo() {
+    const confirmed = confirm("Are you sure you want to delete this demo item?");
+    document.getElementById("dangerResult").textContent =
+        confirmed ? "Demo item deleted successfully!" : "Deletion cancelled.";
+}
+
+function loadDemo() {
+    const button = document.getElementById("loadingBtn");
+    const result = document.getElementById("loadingResult");
+
+    button.disabled = true;
+    button.textContent = "Processing...";
+    result.textContent = "Please wait...";
+
+    setTimeout(() => {
+        button.disabled = false;
+        button.textContent = "Start Process";
+        result.textContent = "Process completed successfully!";
+    }, 2000);
+}
+
+let isOn = false;
+
+function toggleDemo() {
+    isOn = !isOn;
+
+    const button = document.getElementById("toggleBtn");
+    button.textContent = isOn ? "ON" : "OFF";
+    button.classList.toggle("active", isOn);
+
+    document.getElementById("toggleResult").textContent =
+        "Current state: " + (isOn ? "ON" : "OFF");
+}
+
+let count = 0;
+
+function changeCount(value) {
+    count += value;
+    document.getElementById("count").textContent = count;
+}
+
+function resetCount() {
+    count = 0;
+    document.getElementById("count").textContent = count;
+}
+</script>
+
+</body>
+</html>
